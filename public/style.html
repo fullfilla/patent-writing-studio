@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>风格蒸馏 | Patent Writing Studio</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body data-page="style">
+    <div class="page-shell">
+      <header class="topbar">
+        <a class="brand-mark" href="/">
+          <span class="brand-badge">PWS</span>
+          <span class="brand-copy">
+            <strong>Patent Writing Studio</strong>
+            <small>专利写作工作台</small>
+          </span>
+        </a>
+        <nav class="nav-pills">
+          <a class="nav-pill active" href="/style.html">蒸馏</a>
+          <a class="nav-pill" href="/background.html">背景</a>
+          <a class="nav-pill" href="/template.html">模板</a>
+          <a class="nav-pill" href="/chat.html">搭建</a>
+        </nav>
+      </header>
+
+      <main class="page-layout style-dual-layout">
+        <section class="card form-card style-form-card">
+          <div class="section-head">
+            <div>
+              <p class="section-tag">Master Distill</p>
+              <h2>大师模板蒸馏</h2>
+            </div>
+          </div>
+
+          <label class="style-master-name-field">
+            <span class="field-head">大师模板名称</span>
+            <input id="style-master-name" class="text-input" placeholder="例如：稳健代理师写法" />
+          </label>
+
+          <section class="template-manager-panel">
+            <div class="section-head compact-section-head">
+              <div>
+                <p class="section-tag">Template Manager</p>
+                <h3>模板管理</h3>
+              </div>
+            </div>
+            <div class="template-manager-body">
+              <label>
+                <span class="field-head">检索</span>
+                <input id="style-master-search" class="text-input" placeholder="按模板名称检索" />
+              </label>
+              <label>
+                <span class="field-head">选择模板</span>
+                <select id="master-select" class="text-input"></select>
+              </label>
+              <div class="action-row compact-action-row">
+                <button id="delete-master-button" class="ghost-button danger-button" type="button">删除当前模板</button>
+              </div>
+              <div id="distilled-masters-list" class="context-stack template-manager-list"></div>
+            </div>
+          </section>
+
+          <details class="fold-panel">
+            <summary>说明书摘要</summary>
+            <div class="fold-panel-body">
+              <div class="template-rule-card">
+                <strong>摘要样本</strong>
+                <ul>
+                  <li>可上传 `.txt`、`.md`、`.html`、`.docx`。</li>
+                  <li>系统会解析正文并填入下方文本框，文本框里的内容才会参与蒸馏。</li>
+                </ul>
+              </div>
+              <div class="action-row file-action-row">
+                <button class="ghost-button" data-file-trigger="style-abstract-file-input" type="button">上传摘要</button>
+                <span id="style-abstract-file-name" class="file-picker-name">未上传</span>
+                <input
+                  id="style-abstract-file-input"
+                  class="file-picker"
+                  type="file"
+                  accept=".txt,.md,.markdown,.text,.html,.htm,.docx"
+                  aria-label="上传摘要文件"
+                />
+              </div>
+              <label class="full-span">
+                <span>摘要正文</span>
+                <textarea id="style-abstract-text" class="text-area compact" placeholder="可直接粘贴摘要样本"></textarea>
+              </label>
+            </div>
+          </details>
+
+          <details class="fold-panel" open>
+            <summary>说明书</summary>
+            <div class="fold-panel-body">
+              <div class="template-rule-card">
+                <strong>说明书样本</strong>
+                <ul>
+                  <li>建议包含技术领域、背景技术、发明内容、具体实施方式。</li>
+                  <li>这是必填样本；上传后若仍提示未提供，说明文件解析失败。</li>
+                </ul>
+              </div>
+              <div class="action-row file-action-row">
+                <button class="ghost-button" data-file-trigger="style-specification-file-input" type="button">上传说明书</button>
+                <span id="style-specification-file-name" class="file-picker-name">未上传</span>
+                <input
+                  id="style-specification-file-input"
+                  class="file-picker"
+                  type="file"
+                  accept=".txt,.md,.markdown,.text,.html,.htm,.docx"
+                  aria-label="上传说明书文件"
+                />
+              </div>
+              <label class="full-span">
+                <span>说明书正文</span>
+                <textarea id="style-specification-text" class="text-area" placeholder="可直接粘贴说明书正文"></textarea>
+              </label>
+            </div>
+          </details>
+
+          <details class="fold-panel" open>
+            <summary>权利要求书</summary>
+            <div class="fold-panel-body">
+              <div class="template-rule-card">
+                <strong>权利要求样本</strong>
+                <ul>
+                  <li>建议至少包含 1 条独立权利要求和若干从属权利要求。</li>
+                  <li>这是必填样本；系统会从句式、连接关系和限定方式中提炼风格。</li>
+                </ul>
+              </div>
+              <div class="action-row file-action-row">
+                <button class="ghost-button" data-file-trigger="style-claims-file-input" type="button">上传权利要求</button>
+                <span id="style-claims-file-name" class="file-picker-name">未上传</span>
+                <input
+                  id="style-claims-file-input"
+                  class="file-picker"
+                  type="file"
+                  accept=".txt,.md,.markdown,.text,.html,.htm,.docx"
+                  aria-label="上传权利要求书文件"
+                />
+              </div>
+              <label class="full-span">
+                <span>权利要求书正文</span>
+                <textarea id="style-claims-text" class="text-area compact" placeholder="可直接粘贴权利要求书"></textarea>
+              </label>
+            </div>
+          </details>
+
+          <div class="action-row style-action-row">
+            <button id="distill-button" class="primary-button" type="button">解析并保存为大师模板</button>
+            <button id="use-sample-text" class="ghost-button" type="button">载入演示样本</button>
+            <a class="ghost-button anchor-button" href="/template.html">下一步：去模板工坊</a>
+          </div>
+          <div id="style-status" class="settings-status">还没有开始蒸馏。上传说明书和权利要求书后，点击“解析并保存为大师模板”。</div>
+        </section>
+
+        <section class="card output-card style-result-card">
+          <div class="section-head">
+            <div>
+              <p class="section-tag">Result</p>
+              <h2>蒸馏结果</h2>
+            </div>
+            <button class="mini-button" data-copy-target="style-output" type="button">复制</button>
+          </div>
+          <div id="style-output" class="output-block empty-state">
+            上传材料后，这里会显示蒸馏结果和已保存的大师模板内容。
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script type="module" src="/app.js"></script>
+  </body>
+</html>

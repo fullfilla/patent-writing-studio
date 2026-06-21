@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>模板生成 | Patent Writing Studio</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body data-page="template">
+    <div class="page-shell">
+      <header class="topbar">
+        <a class="brand-mark" href="/">
+          <span class="brand-badge">PWS</span>
+          <span class="brand-copy">
+            <strong>Patent Writing Studio</strong>
+            <small>专利写作工作台</small>
+          </span>
+        </a>
+        <nav class="nav-pills">
+          <a class="nav-pill" href="/background.html">背景检索</a>
+          <a class="nav-pill active" href="/template.html">模板生成</a>
+          <a class="nav-pill" href="/style.html">风格蒸馏</a>
+          <a class="nav-pill" href="/chat.html">模板搭建</a>
+        </nav>
+      </header>
+
+      <main class="page-layout template-workshop-layout">
+        <section class="card form-card full-width template-form-top">
+          <div class="section-head">
+            <div>
+              <p class="section-tag">Template</p>
+              <h2>模板工坊</h2>
+            </div>
+          </div>
+
+          <div class="form-grid">
+            <label>
+              <span class="field-head">专利题目</span>
+              <input id="topic-title" class="text-input" placeholder="例如：基于 BERT 的公共服务热线工单识别方法和系统" />
+            </label>
+            <label>
+              <span class="field-head">专利类型</span>
+              <select id="patent-type" class="text-input">
+                <option>发明专利</option>
+                <option>实用新型</option>
+                <option>发明方法</option>
+              </select>
+            </label>
+            <label>
+              <span class="field-head">模板策略</span>
+              <select id="blank-mode" class="text-input">
+                <option value="blank">保留空白</option>
+                <option value="guided">保留引导</option>
+              </select>
+            </label>
+            <label>
+              <span class="field-head">风格预设</span>
+              <select id="template-style-preset" class="text-input"></select>
+            </label>
+          </div>
+
+          <details class="fold-panel" open>
+            <summary>核心技术内容</summary>
+            <div class="fold-panel-body">
+              <div class="form-grid">
+                <label class="full-span">
+                  <span class="field-head">主要问题</span>
+                  <textarea id="template-main-problem" class="text-area compact" placeholder="写现有技术中真正要解决的问题；生成背景技术和发明内容时会优先使用。"></textarea>
+                </label>
+                <label class="full-span">
+                  <span class="field-head">创新点</span>
+                  <textarea id="template-innovation-points" class="text-area compact" placeholder="逐条写你的区别特征、技术改进或要保护的核心点。"></textarea>
+                </label>
+                <label class="full-span">
+                  <span class="field-head">具体实施方法</span>
+                  <textarea id="template-implementation" class="text-area" placeholder="按步骤写输入、处理、模型/模块、参数、输出、异常处理或部署流程。"></textarea>
+                </label>
+              </div>
+            </div>
+          </details>
+
+          <details class="fold-panel" open>
+            <summary>模板来源选择</summary>
+            <div class="fold-panel-body">
+              <div class="form-grid">
+                <label>
+                  <span class="field-head">模板来源</span>
+                  <select id="template-source-type" class="text-input">
+                    <option value="default">系统默认模板</option>
+                    <option value="master">大师模板（模板 + 风格）</option>
+                    <option value="builder">模板搭建器保存模板（只有模板）</option>
+                    <option value="uploaded">手动上传模板</option>
+                  </select>
+                </label>
+                <label>
+                  <span class="field-head">选择大师模板</span>
+                  <select id="selected-master-template-id" class="text-input"></select>
+                </label>
+                <label class="full-span">
+                  <span class="field-head">选择搭建器模板</span>
+                  <select id="selected-builder-template-id" class="text-input"></select>
+                </label>
+              </div>
+              <div id="template-source-note" class="settings-status" data-tone="neutral">
+                选中模板后，生成时会优先遵循它的标题顺序、段落顺序和占位逻辑。
+              </div>
+            </div>
+          </details>
+
+          <details class="template-source-panel fold-panel">
+            <summary>手动上传模板</summary>
+            <div class="fold-panel-body">
+              <div class="template-rule-card">
+                <strong>文件要求</strong>
+                <ul>
+                  <li>支持 `.txt`、`.md`、`.html`、`.docx`。</li>
+                  <li>如果手里是 `.doc`，请先另存为 `.docx` 后上传。</li>
+                  <li>单个文件不超过 `10 MB`。</li>
+                </ul>
+              </div>
+              <div class="action-row file-action-row">
+                <button id="template-file-button" class="ghost-button" type="button">选择文件</button>
+                <span id="template-file-name" class="file-picker-name">未选择任何文件</span>
+                <input
+                  id="template-file-input"
+                  class="sr-only-file-input"
+                  type="file"
+                  accept=".txt,.md,.markdown,.text,.html,.htm,.docx"
+                  aria-label="上传模板文件"
+                />
+                <button id="template-clear-button" class="ghost-button" type="button">清空模板</button>
+              </div>
+              <div id="template-file-status" class="settings-status" data-tone="neutral">
+                当前还没有上传模板，将使用系统默认模板。
+              </div>
+              <label class="full-span">
+                <span class="field-head">模板正文</span>
+                <textarea id="template-source-text" class="text-area" placeholder="可粘贴自己的模板骨架。"></textarea>
+              </label>
+            </div>
+          </details>
+
+          <div class="action-row file-action-row">
+            <button id="template-button" class="primary-button" type="button">生成模板底稿</button>
+            <a class="ghost-button anchor-button" href="/chat.html">去模板搭建器</a>
+          </div>
+        </section>
+
+        <section class="card output-card full-width template-preview-card">
+          <div class="section-head">
+            <div>
+              <p class="section-tag">Draft</p>
+              <h2>模板底稿</h2>
+            </div>
+            <button class="mini-button" data-copy-target="template-output" type="button">复制</button>
+          </div>
+
+          <details class="fold-panel">
+            <summary>当前选择说明</summary>
+            <div class="fold-panel-body">
+              <div id="template-context" class="context-stack"></div>
+            </div>
+          </details>
+
+          <div id="template-output" class="output-block empty-state">
+            生成后，这里会显示模板骨架；核心技术内容会被写入对应章节。
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script type="module" src="/app.js"></script>
+  </body>
+</html>

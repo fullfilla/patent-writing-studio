@@ -1,0 +1,12 @@
+.local/
+node_modules/
+server.pid
+server_stdout.log
+server_stderr.log
+*.log
+.env
+.env.local
+dist/
+coverage/
+__pycache__/
+*.pyc
