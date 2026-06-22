@@ -36,9 +36,23 @@ npm run stop
 
 ## 测试截图
 
-当前测试命令：`npm test`
+以下截图来自本地浏览器中的实际用户操作路径，覆盖主要功能页面。
 
-![Patent Writing Studio 测试结果](docs/screenshots/test-results.png)
+### 背景检索
+
+![背景检索功能测试](docs/screenshots/user-background-search.png)
+
+### 风格蒸馏
+
+![风格蒸馏功能测试](docs/screenshots/user-style-distill.png)
+
+### 模板生成
+
+![模板生成功能测试](docs/screenshots/user-template-workshop.png)
+
+### 模板搭建
+
+![模板搭建功能测试](docs/screenshots/user-template-builder.png)
 
 ## 目录说明
 
