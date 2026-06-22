@@ -34,6 +34,12 @@ npm run status
 npm run stop
 ```
 
+## 测试截图
+
+当前测试命令：`npm test`
+
+![Patent Writing Studio 测试结果](docs/screenshots/test-results.png)
+
 ## 目录说明
 
 - `public/`：前端页面
